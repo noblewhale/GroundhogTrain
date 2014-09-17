@@ -5,7 +5,7 @@ public class NPCPathing : MonoBehaviour
 {
 	public GameObject wayPoint1, wayPoint2, wayPoint3;
 	public float timeTilMoveToPoint1, timeTilMoveToPoint2, timeTilMoveToPoint3;
-	public int onThisStep = 0;
+	public int onThisStep;
 	public bool isTalkingToPlayer;
 	public float walkingSpeed;
 	
@@ -20,10 +20,18 @@ public class NPCPathing : MonoBehaviour
 	{
 		if (!isTalkingToPlayer)
 		{
-			if (Time.time - Time.timeSinceLevelLoad	> timeTilMoveToPoint1)
+			if (onThisStep == 0 && Time.timeSinceLevelLoad	> timeTilMoveToPoint1)
 			{
-				onThisStep = 1;
+                onThisStep++;
 			}
+            if (onThisStep == 1 && Time.timeSinceLevelLoad > timeTilMoveToPoint2 + timeTilMoveToPoint1)
+            {
+                onThisStep++;
+            }
+            if (onThisStep == 2 && Time.timeSinceLevelLoad > timeTilMoveToPoint3 + timeTilMoveToPoint2 + timeTilMoveToPoint1)
+            {
+                onThisStep++;
+            }
 		}
 		else //talkingtoplayer
 		{
@@ -40,19 +48,26 @@ public class NPCPathing : MonoBehaviour
 	
 	void walk()
 	{
+        //Debug.Log("walk");
 		Vector3 directionToWalk = Vector3.zero;
 		if (onThisStep == 1)
 		{
+            //Debug.Log("step 1");
 			directionToWalk = wayPoint1.transform.position - transform.position;
 			this.gameObject.transform.position = this.gameObject.transform.position + (directionToWalk * walkingSpeed * Time.fixedDeltaTime);
 		}
 		else if (onThisStep == 2)
 		{
+            //Debug.Log("step 2");
+            directionToWalk = wayPoint2.transform.position - transform.position;
+            this.gameObject.transform.position = this.gameObject.transform.position + (directionToWalk * walkingSpeed * Time.fixedDeltaTime);
 			
 		}
 		else if (onThisStep == 3)
 		{
-			
+            //Debug.Log("step 3");
+            directionToWalk = wayPoint3.transform.position - transform.position;
+            this.gameObject.transform.position = this.gameObject.transform.position + (directionToWalk * walkingSpeed * Time.fixedDeltaTime);
 		}
 	}
 	
