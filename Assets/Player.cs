@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 			timer.text = "EXPLOSION, everyone dead.";
 			if (bombExplodesAfterThisManySeconds - Time.timeSinceLevelLoad < -5)
 			{
-				Application.LoadLevel("scene");	
+				Application.LoadLevel("scene");
 			}
 		}
 		
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 			timerMesh.text = "EXPLOSION, everyone dead.";
 			if (bombExplodesAfterThisManySeconds - Time.timeSinceLevelLoad < -5)
 			{
-				Application.LoadLevel("scene");	
+				Application.LoadLevel("scene");
 			}
 		}
 

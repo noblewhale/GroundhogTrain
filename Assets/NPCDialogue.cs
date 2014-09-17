@@ -25,7 +25,7 @@ public class NPCDialogue : MonoBehaviour
 			{
 				if (child.name == "NPCSpeech")
 				{
-                    Debug.Log("Holla1");
+                    //Debug.Log("Holla1");
 					currentDialoguePoint = child.gameObject;// as GameObject;
 				}
 			}
@@ -40,7 +40,7 @@ public class NPCDialogue : MonoBehaviour
 			{
 				if (child.name == "NPCSpeech")
 				{
-                    Debug.Log("holla2");
+                    //Debug.Log("holla2");
                     currentDialoguePoint = child.gameObject;
 				}
 			}
@@ -52,12 +52,17 @@ public class NPCDialogue : MonoBehaviour
 	public void displayChoices(bool isClickingToInitateConversation)
 	{
 		Debug.Log ("displayChoices()");
-
+        array.Clear();//needed?
         if (isClickingToInitateConversation)
         {
             if (timesConversationInitatedWith == 0)
             {
                 Debug.Log("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech);
+                if (currentDialoguePoint.GetComponent<DialogueDisplay>().speechAudio != null)
+                {
+                    Debug.Log("play");
+                    currentDialoguePoint.GetComponent<DialogueDisplay>().speechAudio.Play();
+                }
                 timesConversationInitatedWith++;
             }
             else if (timesConversationInitatedWith == 1)
@@ -74,6 +79,11 @@ public class NPCDialogue : MonoBehaviour
         else
         {
             Debug.Log("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech);
+            if (currentDialoguePoint.GetComponent<DialogueDisplay>().speechAudio != null)
+            {
+                Debug.Log("play");
+                currentDialoguePoint.GetComponent<DialogueDisplay>().speechAudio.Play();
+            }
         }
 
         int j = 0;

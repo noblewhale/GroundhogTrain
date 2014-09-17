@@ -9,6 +9,8 @@ public class DialogueDisplay : MonoBehaviour
     public string alternateIntroduction1;
     public string alternateIntroduction2;
 
+    public AudioSource speechAudio;
+
 	void Start ()
 	{
 	
