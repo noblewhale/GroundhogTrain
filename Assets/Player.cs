@@ -7,10 +7,15 @@ public class Player : MonoBehaviour
 	public TextMesh timerMesh;
 	public float bombExplodesAfterThisManySeconds;
 	public GameObject speakingToWhoObject;
+
+    public bool shouldResetPlayerPrefs;
 	
-	void Start () 
+	void Start ()
 	{
-	
+        if (shouldResetPlayerPrefs)
+        {
+            PlayerPrefs.DeleteAll();
+        }
 	}
 	
 	void Update () 
@@ -40,6 +45,8 @@ public class Player : MonoBehaviour
 				Application.LoadLevel("scene");	
 			}
 		}
+
+
 		
 		if (Input.GetMouseButtonDown(0))// && Physics.OverlapSphere(speakingToWhoObject.transform.position, .5f))
 		{
@@ -63,8 +70,8 @@ public class Player : MonoBehaviour
         	}
 			if (closestCollider != null)//talk to this NPC
 			{
-				(closestCollider.GetComponent<NPCDialogue>() as NPCDialogue).displayChoices();
-				//Debug.Log ("green");
+                Debug.Log("Initiate Conversation");
+				(closestCollider.GetComponent<NPCDialogue>() as NPCDialogue).displayChoices();				
 				closestCollider.renderer.material.color = Color.green;
 			}
 		}

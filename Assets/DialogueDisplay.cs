@@ -20,12 +20,12 @@ public class DialogueDisplay : MonoBehaviour
 	{
 		if (requiresThisToBeDone == null || PlayerPrefs.GetInt(requiresThisToBeDone) == 1 || PlayerPrefs.GetInt(requiresThisToBeDone) == 0)
 		{
-			Debug.Log ("true");
+			//Debug.Log ("true");
 			return true;
 		}
 		else
 		{
-			Debug.Log ("false");
+			//Debug.Log ("false");
 			return false;
 		}
 	}

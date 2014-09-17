@@ -4,54 +4,59 @@ using System.Collections;
 public class NPCDialogue : MonoBehaviour 
 {
 	public GameObject currentDialoguePoint;
-	public ArrayList array;
+	//public ArrayList array;
+    public GameObject[] playerSpeechArray = new GameObject[100];
 	void Start () 
 	{
-		
+        playerSpeechArray = new GameObject[100];
 	}
 	
 	void Update () 
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			//currentDialoguePoint = array[0] as GameObject;
+			currentDialoguePoint = playerSpeechArray[0] as GameObject;
+            PlayerPrefs.SetInt(currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech, 1);
 			foreach (Transform child in currentDialoguePoint.transform)
 			{
 				if (child.name == "NPCSpeech")
 				{
-					currentDialoguePoint = array[1] as GameObject;
-				}
-			}			
-			displayChoices();
-			Debug.Log ("0");
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			//currentDialoguePoint = array[1] as GameObject;
-			foreach (Transform child in currentDialoguePoint.transform)
-			{
-				if (child.name == "NPCSpeech")
-				{
-					currentDialoguePoint = array[1] as GameObject;
+                    Debug.Log("Holla1");
+					currentDialoguePoint = child.gameObject;// as GameObject;
 				}
 			}
 			displayChoices();
 			Debug.Log ("1");
 		}
+		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+            currentDialoguePoint = playerSpeechArray[1] as GameObject;
+			foreach (Transform child in currentDialoguePoint.transform)
+			{
+				if (child.name == "NPCSpeech")
+				{
+                    Debug.Log("holla2");
+					currentDialoguePoint = playerSpeechArray[1] as GameObject;
+				}
+			}
+			displayChoices();
+			Debug.Log ("2");
+		}
 	}
 	
 	public void displayChoices()
 	{
-		//Debug.Log ("Hi!");
-		array = new ArrayList();
-		Debug.Log ("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech);//actually NPC SPEECH
+		Debug.Log ("displayChoices()");
+		Debug.Log ("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech);//NPC SPEECH
+        int j = 0;
 		foreach (Transform child in currentDialoguePoint.transform)
 		{
             if (child.GetComponent<DialogueDisplay>().ShouldDisplay())
 			{
 				Debug.Log ("Playa " + child.GetComponent<DialogueDisplay>().playerSpeech);
-				array.Add(child);
-				//child.renderer.enabled = true;
+                
+                playerSpeechArray[j] = child.gameObject;
+                j++;
 			}
         }
 	}
