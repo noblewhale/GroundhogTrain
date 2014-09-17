@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class Player : MonoBehaviour 
 {
 	public GUIText timer;
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
 			if (closestCollider != null)//talk to this NPC
 			{
                 Debug.Log("Initiate Conversation");
-				(closestCollider.GetComponent<NPCDialogue>() as NPCDialogue).displayChoices();				
+				(closestCollider.GetComponent<NPCDialogue>() as NPCDialogue).displayChoices(true);				
 				closestCollider.renderer.material.color = Color.green;
 			}
 		}

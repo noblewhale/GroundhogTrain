@@ -6,6 +6,9 @@ public class DialogueDisplay : MonoBehaviour
 	public string requiresThisToBeDone;
 	public string playerSpeech;
 
+    public string alternateIntroduction1;
+    public string alternateIntroduction2;
+
 	void Start ()
 	{
 	
@@ -18,7 +21,7 @@ public class DialogueDisplay : MonoBehaviour
 	
 	public bool ShouldDisplay()
 	{
-		if (requiresThisToBeDone == null || PlayerPrefs.GetInt(requiresThisToBeDone) == 1 || PlayerPrefs.GetInt(requiresThisToBeDone) == 0)
+		if (requiresThisToBeDone == "NA" || PlayerPrefs.GetInt(requiresThisToBeDone) == 1)
 		{
 			//Debug.Log ("true");
 			return true;

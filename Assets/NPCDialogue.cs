@@ -4,18 +4,22 @@ using System.Collections;
 public class NPCDialogue : MonoBehaviour 
 {
 	public GameObject currentDialoguePoint;
-	//public ArrayList array;
+	public ArrayList array;
     public GameObject[] playerSpeechArray = new GameObject[100];
-	void Start () 
+
+    public int timesConversationInitatedWith;
+	void Start ()
 	{
-        playerSpeechArray = new GameObject[100];
+        array = new ArrayList();
+        //playerSpeechArray = new GameObject[100];
 	}
 	
-	void Update () 
+	void Update ()
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			currentDialoguePoint = playerSpeechArray[0] as GameObject;
+            currentDialoguePoint = array[0] as GameObject;
+			//currentDialoguePoint = playerSpeechArray[0] as GameObject;
             PlayerPrefs.SetInt(currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech, 1);
 			foreach (Transform child in currentDialoguePoint.transform)
 			{
@@ -25,37 +29,62 @@ public class NPCDialogue : MonoBehaviour
 					currentDialoguePoint = child.gameObject;// as GameObject;
 				}
 			}
-			displayChoices();
+			displayChoices(false);
 			Debug.Log ("1");
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-            currentDialoguePoint = playerSpeechArray[1] as GameObject;
+            currentDialoguePoint = array[1] as GameObject;
+            //currentDialoguePoint = playerSpeechArray[1] as GameObject;
 			foreach (Transform child in currentDialoguePoint.transform)
 			{
 				if (child.name == "NPCSpeech")
 				{
                     Debug.Log("holla2");
-					currentDialoguePoint = playerSpeechArray[1] as GameObject;
+                    currentDialoguePoint = child.gameObject;
 				}
 			}
-			displayChoices();
+			displayChoices(false);
 			Debug.Log ("2");
 		}
 	}
 	
-	public void displayChoices()
+	public void displayChoices(bool isClickingToInitateConversation)
 	{
 		Debug.Log ("displayChoices()");
-		Debug.Log ("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech);//NPC SPEECH
+
+        if (isClickingToInitateConversation)
+        {
+            if (timesConversationInitatedWith == 0)
+            {
+                Debug.Log("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech);
+                timesConversationInitatedWith++;
+            }
+            else if (timesConversationInitatedWith == 1)
+            {
+                Debug.Log("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().alternateIntroduction1);
+                timesConversationInitatedWith++;
+            }
+            else if (timesConversationInitatedWith == 2)
+            {
+                Debug.Log("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().alternateIntroduction2);
+                timesConversationInitatedWith++;
+            }
+        }
+        else
+        {
+            Debug.Log("NPC " + currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech);
+        }
+
         int j = 0;
+
 		foreach (Transform child in currentDialoguePoint.transform)
 		{
             if (child.GetComponent<DialogueDisplay>().ShouldDisplay())
 			{
 				Debug.Log ("Playa " + child.GetComponent<DialogueDisplay>().playerSpeech);
-                
-                playerSpeechArray[j] = child.gameObject;
+                array.Add(child.gameObject);
+                //playerSpeechArray[j] = child.gameObject;
                 j++;
 			}
         }
