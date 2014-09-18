@@ -71,8 +71,11 @@ public class Player : MonoBehaviour
         	}
 			if (closestCollider != null)//talk to this NPC
 			{
+				NPCDialogue tempNPCDialogue = closestCollider.GetComponent<NPCDialogue>();
                 Debug.Log("Initiate Conversation");
-				(closestCollider.GetComponent<NPCDialogue>() as NPCDialogue).displayChoices(true);				
+				tempNPCDialogue.displayChoices(true);
+				tempNPCDialogue.isTalkingToPlayer = true;
+				tempNPCDialogue.talkingToPlayerZeroTime = Time.time;
 				closestCollider.renderer.material.color = Color.green;
 			}
 		}

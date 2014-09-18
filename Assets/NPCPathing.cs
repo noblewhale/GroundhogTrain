@@ -6,10 +6,11 @@ public class NPCPathing : MonoBehaviour
 	public GameObject wayPoint1, wayPoint2, wayPoint3;
 	public float timeTilMoveToPoint1, timeTilMoveToPoint2, timeTilMoveToPoint3;
 	public int onThisStep;
-	public bool isTalkingToPlayer;
 	public float walkingSpeed;
 	
 	public bool beenTalkedToYet;
+	
+	public NPCDialogue DialogueScript;
 	
 	void Start () 
 	{
@@ -18,7 +19,7 @@ public class NPCPathing : MonoBehaviour
 	
 	void Update () 
 	{
-		if (!isTalkingToPlayer)
+		if (!DialogueScript.isTalkingToPlayer)
 		{
 			if (onThisStep == 0 && Time.timeSinceLevelLoad	> timeTilMoveToPoint1)
 			{
@@ -35,12 +36,12 @@ public class NPCPathing : MonoBehaviour
 		}
 		else //talkingtoplayer
 		{
-			//talking();	
+			//talking();
 		}
 	}
 	void FixedUpdate()
 	{
-		if (!isTalkingToPlayer)
+		if (!DialogueScript.isTalkingToPlayer && wayPoint1 && wayPoint2 && wayPoint3)
 		{
 			walk ();
 		}

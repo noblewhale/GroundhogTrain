@@ -6,8 +6,16 @@ public class NPCDialogue : MonoBehaviour
 	public GameObject currentDialoguePoint;
 	public ArrayList array;
     public GameObject[] playerSpeechArray = new GameObject[100];
+	
+	public bool isTalkingToPlayer;
+	public float talkingToPlayerZeroTime;
+	public float talkToPlayerForThisLongBeforeContinuingOnNormalPath;
 
     public int timesConversationInitatedWith;
+	
+	public string playerSpeechChoice1, playerSpeechChoice2;
+	
+	public NPCPathing PathingScript;
 	void Start ()
 	{
         array = new ArrayList();
@@ -16,8 +24,19 @@ public class NPCDialogue : MonoBehaviour
 	
 	void Update ()
 	{
+		if (isTalkingToPlayer)
+		{
+			if (Time.time - talkingToPlayerZeroTime > talkToPlayerForThisLongBeforeContinuingOnNormalPath)
+			{
+				isTalkingToPlayer = false;
+			}
+			PathingScript.timeTilMoveToPoint1 = PathingScript.timeTilMoveToPoint1 + Time.deltaTime;
+			PathingScript.timeTilMoveToPoint2 = PathingScript.timeTilMoveToPoint2 + Time.deltaTime;
+			PathingScript.timeTilMoveToPoint3 = PathingScript.timeTilMoveToPoint3 + Time.deltaTime;
+		}
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
+			talkingToPlayerZeroTime = Time.time;
             currentDialoguePoint = array[0] as GameObject;
 			//currentDialoguePoint = playerSpeechArray[0] as GameObject;
             PlayerPrefs.SetInt(currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech, 1);
@@ -34,6 +53,7 @@ public class NPCDialogue : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
+			talkingToPlayerZeroTime = Time.time;
             currentDialoguePoint = array[1] as GameObject;
             //currentDialoguePoint = playerSpeechArray[1] as GameObject;
 			foreach (Transform child in currentDialoguePoint.transform)
@@ -98,5 +118,13 @@ public class NPCDialogue : MonoBehaviour
                 j++;
 			}
         }
+	}
+	
+	void OnGUI()
+	{
+		for (int i = 0; i < array.Count; i++)
+		{
+			GUI.Box(new Rect(10,10 + 10 * i * 4,500,30), i + 1 + "    " + (array[i] as GameObject).GetComponent<DialogueDisplay>().playerSpeech);
+		}
 	}
 }
