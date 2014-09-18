@@ -30,9 +30,13 @@ public class NPCDialogue : MonoBehaviour
 			{
 				isTalkingToPlayer = false;
 			}
-			PathingScript.timeTilMoveToPoint1 = PathingScript.timeTilMoveToPoint1 + Time.deltaTime;
-			PathingScript.timeTilMoveToPoint2 = PathingScript.timeTilMoveToPoint2 + Time.deltaTime;
-			PathingScript.timeTilMoveToPoint3 = PathingScript.timeTilMoveToPoint3 + Time.deltaTime;
+			for (int i = 0; i < PathingScript.wayPointArraySize; i++)
+			{
+				PathingScript.timeTilMoveToPointArray[i] = PathingScript.timeTilMoveToPointArray[i] + Time.deltaTime;
+//				PathingScript.timeTilMoveToPoint1 = PathingScript.timeTilMoveToPoint1 + Time.deltaTime;
+//				PathingScript.timeTilMoveToPoint2 = PathingScript.timeTilMoveToPoint2 + Time.deltaTime;
+//				PathingScript.timeTilMoveToPoint3 = PathingScript.timeTilMoveToPoint3 + Time.deltaTime;
+			}
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{

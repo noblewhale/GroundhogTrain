@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DialogueDisplay.cs" />
+     <Compile Include="Assets\NPCChildSpecialActions.cs" />
      <Compile Include="Assets\NPCDialogue.cs" />
      <Compile Include="Assets\NPCPathing.cs" />
      <Compile Include="Assets\Player.cs" />

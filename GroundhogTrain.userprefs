@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NPCDialogue.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NPCPathing.cs">
     <Files>
-      <File FileName="Assets\Player.cs" Line="65" Column="5" />
-      <File FileName="Assets\NPCPathing.cs" Line="11" Column="2" />
-      <File FileName="Assets\NPCDialogue.cs" Line="38" Column="4" />
-      <File FileName="Assets\DialogueDisplay.cs" Line="9" Column="15" />
+      <File FileName="Assets\NPCPathing.cs" Line="22" Column="1" />
+      <File FileName="Assets\Player.cs" Line="9" Column="48" />
+      <File FileName="Assets\NPCDialogue.cs" Line="35" Column="106" />
+      <File FileName="Assets\DialogueDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets\NPCChildSpecialActions.cs" Line="31" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
