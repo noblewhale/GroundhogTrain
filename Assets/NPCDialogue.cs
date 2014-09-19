@@ -5,7 +5,6 @@ public class NPCDialogue : MonoBehaviour
 {
 	public GameObject currentDialoguePoint;
 	public ArrayList array;
-    public GameObject[] playerSpeechArray = new GameObject[100];
 	
 	public bool isTalkingToPlayer;
 	public float talkingToPlayerZeroTime;
@@ -34,42 +33,82 @@ public class NPCDialogue : MonoBehaviour
 				PathingScript.timeTilMoveToPointArray[i] = PathingScript.timeTilMoveToPointArray[i] + Time.deltaTime;
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			talkingToPlayerZeroTime = Time.time;
+        checkForInput();
+	}
+
+    public void checkForInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && array.Count > 0)
+        {
+            talkingToPlayerZeroTime = Time.time;
             currentDialoguePoint = array[0] as GameObject;
             PlayerPrefs.SetInt(currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech, 1);
-			foreach (Transform child in currentDialoguePoint.transform)
-			{
-				if (child.name == "NPCSpeech")
-				{
-                    //Debug.Log("Holla1");
-					currentDialoguePoint = child.gameObject;
-				}
-			}
-			displayChoices(false);
-			Debug.Log ("1");
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			talkingToPlayerZeroTime = Time.time;
-            currentDialoguePoint = array[1] as GameObject;
-			foreach (Transform child in currentDialoguePoint.transform)
-			{
-				if (child.name == "NPCSpeech")
-				{
-                    //Debug.Log("holla2");
+            foreach (Transform child in currentDialoguePoint.transform)
+            {
+                if (child.name == "NPCSpeech")
+                {
                     currentDialoguePoint = child.gameObject;
-				}
-			}
-			displayChoices(false);
-			Debug.Log ("2");
-		}
-	}
-	
+                }
+            }
+            displayChoices(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && array.Count > 1)
+        {
+            talkingToPlayerZeroTime = Time.time;
+            currentDialoguePoint = array[1] as GameObject;
+            foreach (Transform child in currentDialoguePoint.transform)
+            {
+                if (child.name == "NPCSpeech")
+                {
+                    currentDialoguePoint = child.gameObject;
+                }
+            }
+            displayChoices(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && array.Count > 2)
+        {
+            talkingToPlayerZeroTime = Time.time;
+            currentDialoguePoint = array[2] as GameObject;
+            foreach (Transform child in currentDialoguePoint.transform)
+            {
+                if (child.name == "NPCSpeech")
+                {
+                    currentDialoguePoint = child.gameObject;
+                }
+            }
+            displayChoices(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && array.Count > 3)
+        {
+            talkingToPlayerZeroTime = Time.time;
+            currentDialoguePoint = array[3] as GameObject;
+            foreach (Transform child in currentDialoguePoint.transform)
+            {
+                if (child.name == "NPCSpeech")
+                {
+                    currentDialoguePoint = child.gameObject;
+                }
+            }
+            displayChoices(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5) && array.Count > 4)
+        {
+            talkingToPlayerZeroTime = Time.time;
+            currentDialoguePoint = array[4] as GameObject;
+            foreach (Transform child in currentDialoguePoint.transform)
+            {
+                if (child.name == "NPCSpeech")
+                {
+                    currentDialoguePoint = child.gameObject;
+                }
+            }
+            displayChoices(false);
+        }
+    }
+
 	public void displayChoices(bool isClickingToInitateConversation)
 	{
-		Debug.Log ("displayChoices()");
+		//Debug.Log ("displayChoices()");
         array.Clear();//needed?
         if (isClickingToInitateConversation)
         {

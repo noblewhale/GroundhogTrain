@@ -25,12 +25,10 @@ public class DialogueDisplay : MonoBehaviour
 	{
 		if (requiresThisToBeDone == "NA" || PlayerPrefs.GetInt(requiresThisToBeDone) == 1)
 		{
-			//Debug.Log ("true");
 			return true;
 		}
 		else
 		{
-			//Debug.Log ("false");
 			return false;
 		}
 	}

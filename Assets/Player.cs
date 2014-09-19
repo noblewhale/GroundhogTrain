@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
         	int i = 0;
 			Collider closestCollider = null;//gameObject to talk to
 			float latestNPCColliderDistance = 50f;
-			//Debug.Log ("length " + hitColliders.Length);
         	while (i < hitColliders.Length)
 			{
 				if (hitColliders[i].tag == "NPC")

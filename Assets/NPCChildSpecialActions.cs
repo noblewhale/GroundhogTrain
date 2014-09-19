@@ -4,9 +4,7 @@ using System.Collections;
 public class NPCChildSpecialActions : MonoBehaviour 
 {
 	public float specialActionZeroTime;
-	public float specialActionTimeLength;
-	//public bool isDoingSpecialAction;
-	
+	public float specialActionTimeLength;	
 	public NPCPathing NPCPathingScript;
 
 	void Start () 
@@ -19,13 +17,12 @@ public class NPCChildSpecialActions : MonoBehaviour
 		if (NPCPathingScript.isDoingSpecialAction && Time.time - specialActionZeroTime > specialActionTimeLength)
 		{
 			NPCPathingScript.isDoingSpecialAction = false;
-			Debug.Log ("endspecialaction");
+			//Debug.Log ("endspecialaction");
 		}
 	}
 	
 	void OnTriggerEnter(Collider collider)
 	{
-		Debug.Log ("triggerenter");
 		if (collider.name == "NPCTicketPuncher")
 		{
 			Debug.Log ("TICKET PUNCHER SPECIAL ACTION");

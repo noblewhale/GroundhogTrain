@@ -24,7 +24,6 @@ public class NPCPathing : MonoBehaviour
 		{
 			if (wayPointArray[i] == null)
 			{
-				Debug.Log ("break " + i);
 				wayPointArraySize = i;
 				timeTilMoveToPointArraySize = i;
 				break;
@@ -40,7 +39,7 @@ public class NPCPathing : MonoBehaviour
 			{
 				if (onThisStep < wayPointArraySize && Time.time - lastStepChangeTime > timeTilMoveToPointArray[onThisStep])
 				{
-					Debug.Log ("onthis step " + onThisStep);
+					//Debug.Log ("onthis step " + onThisStep);
 					lastStepChangeTime = Time.time;
                     onThisStep++;
 				}
@@ -60,7 +59,6 @@ public class NPCPathing : MonoBehaviour
 		Vector3 directionToWalk = Vector3.zero;
 		if (onThisStep < wayPointArraySize)
 		{
-			//Debug.Log ("walk2");
 			directionToWalk = wayPointArray[onThisStep].transform.position - transform.position;
 			this.gameObject.transform.position = this.gameObject.transform.position + (directionToWalk * walkingSpeed * Time.fixedDeltaTime);
 		}
