@@ -5,7 +5,7 @@ public class NPCChildSpecialActions : MonoBehaviour
 {
 	public float specialActionZeroTime;
 	public float specialActionTimeLength;
-	public bool isDoingSpecialAction;
+	//public bool isDoingSpecialAction;
 	
 	public NPCPathing NPCPathingScript;
 

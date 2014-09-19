@@ -19,7 +19,6 @@ public class NPCDialogue : MonoBehaviour
 	void Start ()
 	{
         array = new ArrayList();
-        //playerSpeechArray = new GameObject[100];
 	}
 	
 	void Update ()
@@ -33,23 +32,19 @@ public class NPCDialogue : MonoBehaviour
 			for (int i = 0; i < PathingScript.wayPointArraySize; i++)
 			{
 				PathingScript.timeTilMoveToPointArray[i] = PathingScript.timeTilMoveToPointArray[i] + Time.deltaTime;
-//				PathingScript.timeTilMoveToPoint1 = PathingScript.timeTilMoveToPoint1 + Time.deltaTime;
-//				PathingScript.timeTilMoveToPoint2 = PathingScript.timeTilMoveToPoint2 + Time.deltaTime;
-//				PathingScript.timeTilMoveToPoint3 = PathingScript.timeTilMoveToPoint3 + Time.deltaTime;
 			}
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
 			talkingToPlayerZeroTime = Time.time;
             currentDialoguePoint = array[0] as GameObject;
-			//currentDialoguePoint = playerSpeechArray[0] as GameObject;
             PlayerPrefs.SetInt(currentDialoguePoint.GetComponent<DialogueDisplay>().playerSpeech, 1);
 			foreach (Transform child in currentDialoguePoint.transform)
 			{
 				if (child.name == "NPCSpeech")
 				{
                     //Debug.Log("Holla1");
-					currentDialoguePoint = child.gameObject;// as GameObject;
+					currentDialoguePoint = child.gameObject;
 				}
 			}
 			displayChoices(false);
@@ -59,7 +54,6 @@ public class NPCDialogue : MonoBehaviour
 		{
 			talkingToPlayerZeroTime = Time.time;
             currentDialoguePoint = array[1] as GameObject;
-            //currentDialoguePoint = playerSpeechArray[1] as GameObject;
 			foreach (Transform child in currentDialoguePoint.transform)
 			{
 				if (child.name == "NPCSpeech")
@@ -118,7 +112,6 @@ public class NPCDialogue : MonoBehaviour
 			{
 				Debug.Log ("Playa " + child.GetComponent<DialogueDisplay>().playerSpeech);
                 array.Add(child.gameObject);
-                //playerSpeechArray[j] = child.gameObject;
                 j++;
 			}
         }

@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
 
 		
-		if (Input.GetMouseButtonDown(0))// && Physics.OverlapSphere(speakingToWhoObject.transform.position, .5f))
+		if (Input.GetMouseButtonDown(0))
 		{
 			Collider[] hitColliders = Physics.OverlapSphere(speakingToWhoObject.transform.position, 2f);
         	int i = 0;
